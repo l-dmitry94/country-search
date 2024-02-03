@@ -1,8 +1,10 @@
 import { Grid, GridItem } from 'components';
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const CountryList = ({ countries }) => {
+  const location = useLocation();
+
   return (
     <Grid>
       {countries.map(({ id, flag }) => {
@@ -10,7 +12,7 @@ export const CountryList = ({ countries }) => {
           <Fragment key={id}>
             {id === 'Russia' ? null : (
               <GridItem key={id}>
-                <Link to={`/country/${id}`}>
+                <Link to={`/country/${id}`} state={{ from: location }}>
                   <img src={flag} alt={id} />
                 </Link>
               </GridItem>
